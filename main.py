@@ -60,6 +60,9 @@ class App(tk.Tk):
         #Create my vehicle frame
         self.myVehicleFrame = MyVehicleFrame(self)
 
+        #Create oil life frame
+        self.oilLifeFrame = oilLifeFrame(self)
+
         self.mainloop()
 
     def highlightActiveSectionButton(self):
@@ -71,6 +74,7 @@ class App(tk.Tk):
 
     def hideAllMenus(self):
         self.myVehicleFrame.renderWidget(False)
+        self.oilLifeFrame.renderWidget(False)
 
     def showActiveMenu(self):
         selection = self.activeSection
@@ -80,7 +84,7 @@ class App(tk.Tk):
             self.myVehicleFrame.renderWidget(True)
         
         elif selection == "Oil Life":
-            print("erl life")
+            self.oilLifeFrame.renderWidget(True)
         
         elif selection == "Gas Mileage":
             print("gas")
@@ -133,7 +137,6 @@ class MyVehicleFrame(ttk.Frame):
         self.VehicleTypeSelector.grid(row=1, column=1)
 
         self.configure(style="Card")
-        self.place(relheight=1, relwidth=0.75, anchor=tk.W, relx=0.25, rely=0.5)
 
     def renderWidget(self, show: bool):
         if show == True:
@@ -156,5 +159,21 @@ class MyVehicleFrame(ttk.Frame):
     def comboboxVehicleTypeSelected(self, _event):
         selectedVehicleType = self.VehicleTypeSelector.get()
         self.VehicleTypeSelector.selection_clear()
+
+class oilLifeFrame(ttk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent)
+        #Frame widgets
+
+        self.titleLabel = ttk.Label(self, text="Change yer oil", font=("Arial", 20))
+        self.titleLabel.pack(fill="both")
+
+
+    #Class functions
+    def renderWidget(self, show: bool):
+        if show == True:
+            self.place(relheight=1, relwidth=0.75, anchor=tk.W, relx=0.25, rely=0.5)
+        else:
+            self.place_forget()
 
 App() # OwO
