@@ -97,6 +97,7 @@ class App(tk.Tk):
         self.highlightActiveSectionButton()
         self.showActiveMenu()
 
+
     def gasMileageButtonPress(self):
         self.activeSection = "Gas Mileage"
         self.highlightActiveSectionButton()
